@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +15,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+
+@Repository     // @Component 포함됨 -> Bean객체 등록!
 public class MemoRepository {
     private final JdbcTemplate jdbcTemplate;
+
     public MemoRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -78,7 +82,7 @@ public class MemoRepository {
         String sql = "SELECT * FROM memo WHERE id = ?";
 
         return jdbcTemplate.query(sql, resultSet -> {
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 Memo memo = new Memo();
                 memo.setUsername(resultSet.getString("username"));
                 memo.setContents(resultSet.getString("contents"));

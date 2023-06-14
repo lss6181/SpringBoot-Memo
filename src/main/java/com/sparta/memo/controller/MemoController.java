@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class MemoController {
-// MemoController > MemoService > MemoRepository
+    // MemoController > MemoService > MemoRepository
     private final MemoService memoService;
 
     public MemoController(MemoService memoService) {
